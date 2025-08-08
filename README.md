@@ -11,6 +11,16 @@ npm run dev
 
 app:setup is automating all .env key generate migrate and seed
 
+# Test Data:
+
+Accounts:
+
+    subscriber@test.com
+    contributor@test.com
+    admin@test.com
+    Password (All): password123
+
+
 # Comments from Members;
 
 1. App Setup

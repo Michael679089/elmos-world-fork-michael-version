@@ -196,6 +196,9 @@ class PostController extends Controller
         $comments = $post->comments()->with('users')->get();
         $user_id = Auth::id();
         $user_object = User::find($user_id); // returns the User model or null
+        $formattedDate = date('F j, Y', strtotime($post->publication_date));
+        Log::info("Publication Date of Post:", $formattedDate);
+
 
         $comments = $comments->where("post_id", $id);
 
@@ -344,7 +347,7 @@ class PostController extends Controller
 
                 if ($new_image_url_link) {
                     $new_image_url_link->update([
-                        'url'         => $validated_request_items['post_image'] ?? $media->url,
+                        'url'         => $validated_request_items['post_image'] ?? $post->media->url,
                         'file_name'   => fake()->title(),
                         'file_type'   => '.jpg',
                         'upload_date' => now(),
